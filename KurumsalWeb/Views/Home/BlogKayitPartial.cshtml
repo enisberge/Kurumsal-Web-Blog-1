@@ -1,0 +1,26 @@
+﻿@using KurumsalWeb.Helper
+@using KurumsalWeb.Models.Model
+@model IEnumerable<Blog>
+
+
+
+@foreach (var itemBlog in Model)
+{
+    <li>
+        <img width="50" height="50" src="@itemBlog.ResimURL" class="pull-left" alt="@itemBlog.Baslik" />
+        <h6><a href="/BlogPost/@SeoHelper.ToSeoUrl(itemBlog.Baslik).ToLower()-@itemBlog.BlogId">@itemBlog.Baslik</a></h6>
+
+        <p>
+            @if (itemBlog.Icerik.Length > 150)
+            {
+                @Html.Raw(itemBlog.Icerik.Substring(0, 150))
+            }
+            else
+            {
+                @Html.Raw(itemBlog.Icerik)
+            }
+
+        </p>
+    </li>
+}
+
